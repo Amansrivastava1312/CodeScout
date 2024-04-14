@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import HomePage from "./pages/HomePage";
@@ -11,8 +9,6 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <div className="flex">
       <Sidebar />

@@ -60,11 +60,6 @@ public/
 # React
 build/
 
-# Tailwind CSS
-.tailwindcss-debug.log
-.tailwindcss-plugins.log
-tailwind.config.js
-postcss.config.js
 
 # Shadow CSS
 .shadcn/
