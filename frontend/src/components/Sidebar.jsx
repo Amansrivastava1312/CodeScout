@@ -1,14 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { IoHomeSharp } from "react-icons/io5";
-import { FaHeart } from "react-icons/fa";
+import { TbUserSearch } from "react-icons/tb";
+
 import { MdOutlineExplore } from "react-icons/md";
 import { PiSignInBold } from "react-icons/pi";
 import { MdEditDocument } from "react-icons/md";
 import Logout from "./Logout";
+import { useAuthContext } from "../context/AuthContext";
 
 export default function Sidebar() {
-  const authUser = true;
+  const { authUser } = useAuthContext();
   return (
     <aside
       className="flex flex-col items-center min-w-12 sm:w-16 sticky top-0 left-0 h-screen py-8
@@ -25,14 +27,7 @@ export default function Sidebar() {
         >
           <IoHomeSharp size={20} />
         </Link>
-        {authUser && (
-          <Link
-            to="/likes"
-            className="p-1.5 flex justify-center transition-colors duration-200 rounded-lg hover:bg-gray-800"
-          >
-            <FaHeart size={22} />
-          </Link>
-        )}
+    
         {authUser && (
           <Link
             to="/explore"
@@ -41,6 +36,14 @@ export default function Sidebar() {
             <MdOutlineExplore size={25} />
           </Link>
         )}
+        {authUser && (
+					<Link
+						to='/explore_user'
+						className='p-1.5 flex justify-center transition-colors duration-200 rounded-lg hover:bg-gray-800'
+					>
+						<TbUserSearch size={25}/>
+					</Link>
+				)}
         {!authUser && (
           <Link
             to="/login"

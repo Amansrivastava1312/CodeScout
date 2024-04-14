@@ -9,7 +9,5 @@ import {
 const router = express.Router();
 
 router.get("/profile/:username", getUserProfileAndRepos);
-// router.get("/likes", verifyAuth, getLikes);
-// router.post("/like/:username", verifyAuth, likeProfile);
 
 export default router;
