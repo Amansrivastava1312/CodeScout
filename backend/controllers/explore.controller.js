@@ -4,7 +4,7 @@ export const explorePopularRepos = async (req, res) => {
   try {
     // 5000 requests per hour for authenticated requests
     const response = await fetch(
-      `https://api.github.com/search/repositories?q=language:${language}&sort=stars&order=desc&per_page=10`,
+      `https://api.github.com/search/repositories?q=language:${language}&sort=stars&order=desc&per_page=50`,
       {
         headers: {
           authorization: `token ${process.env.GITHUB_API_KEY}`,
