@@ -41,6 +41,12 @@ const Repo = ({ repo }) => {
           <FaRegStar /> {repo.stargazers_count}
         </span>
         <span
+          className="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5
+					py-0.5 rounded-full flex items-center gap-1"
+        >
+          <FaCodeFork /> {repo.forks_count}
+        </span>
+        <span
           onClick={() => handleCloneClick(repo)}
           className="cursor-pointer bg-green-100 text-green-800 text-xs
         font-medium px-2.5 py-0.5 rounded-full flex items-center gap-1"
