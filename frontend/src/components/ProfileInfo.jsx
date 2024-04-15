@@ -7,22 +7,26 @@ import {
 import { FaXTwitter } from "react-icons/fa6";
 import { TfiThought } from "react-icons/tfi";
 import { FaEye } from "react-icons/fa";
+import { formatMemberSince } from "../utils/functions";
 
-const ProfileInfo = () => {
-  const userProfile = {
-    avatar_url: "https://shorturl.at/nyEF7",
-    bio: "👨🏻‍💻👨🏻‍💻👨🏻‍💻",
-    email: "demo@gmail.com",
-    followers: 100,
-    following: 200,
-    html_url: "",
-    location: "Somewhere, Earth",
-    name: "Aman",
-    public_gists: 100,
-    public_repos: 100,
-    twitter_username: "Aman",
-    login: "Aman",
-  };
+const ProfileInfo = ({ userProfile }) => {
+  // const userProfile = {
+  //   avatar_url: "https://shorturl.at/nyEF7",
+  //   bio: "👨🏻‍💻👨🏻‍💻👨🏻‍💻",
+  //   email: "demo@gmail.com",
+  //   followers: 100,
+  //   following: 200,
+  //   html_url: "",
+  //   location: "Somewhere, Earth",
+  //   name: "Aman",
+  //   public_gists: 100,
+  //   public_repos: 100,
+  //   twitter_username: "Aman",
+  //   login: "Aman",
+  // };
+
+	const memberSince = formatMemberSince(userProfile?.created_at);
+
 
   return (
     <div className="lg:w-1/3 w-full flex flex-col gap-2 md:sticky md:top-10">
