@@ -9,5 +9,6 @@ import {
 const router = express.Router();
 
 router.get("/profile/:username", getUserProfileAndRepos);
+router.get("/contributors/:owner/:repo", ensureAuthenticated, getContributorsAndContributions);
 
 export default router;
