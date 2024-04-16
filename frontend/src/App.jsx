@@ -6,6 +6,7 @@ import SignUpPage from "./pages/SignUpPage";
 import HomePage from "./pages/HomePage";
 import ExplorePage from "./pages/ExplorePage";
 import ExploreUsers from "./pages/ExploreUsers";
+import ContributorPage from "./pages/ContributorPage";
 
 import Sidebar from "./components/Sidebar";
 import { useAuthContext } from "./context/AuthContext";
@@ -25,7 +26,10 @@ function App() {
             path="/explore"
             element={authUser ? <ExplorePage /> : <Navigate to={"/login"} />}
           />
-          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/"
+            element={authUser ? <HomePage /> : <Navigate to={"/login"} />}
+          />
           <Route
             path="/login"
             element={!authUser ? <LoginPage /> : <Navigate to={"/"} />}
@@ -37,6 +41,12 @@ function App() {
           <Route
             path="/explore_user"
             element={authUser ? <ExploreUsers /> : <Navigate to={"/login"} />}
+          />
+          <Route
+            path="/explore_user_contributor/:owner/:repo"
+            element={
+              authUser ? <ContributorPage /> : <Navigate to={"/login"} />
+            }
           />
         </Routes>
         <Toaster />

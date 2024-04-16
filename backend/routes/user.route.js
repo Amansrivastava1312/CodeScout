@@ -1,14 +1,17 @@
 import express from "express";
 import {
-  // getLikes,
   getUserProfileAndRepos,
-  // likeProfile,
+  getContributorsAndContributions,
 } from "../controllers/user.controller.js";
-// import { verifyAuth } from "../middleware/auth.middleware.js";
+import { verifyAuth } from "../middleware/auth.middleware.js";
 
 const router = express.Router();
 
-router.get("/profile/:username", getUserProfileAndRepos);
-router.get("/contributors/:owner/:repo", ensureAuthenticated, getContributorsAndContributions);
+router.get("/profile/:username", verifyAuth, getUserProfileAndRepos);
+router.get(
+  "/contributors/:owner/:repo",
+  verifyAuth,
+  getContributorsAndContributions
+);
 
 export default router;

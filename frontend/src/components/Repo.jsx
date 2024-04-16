@@ -4,8 +4,12 @@ import { formatDate } from "../utils/functions";
 import { PROGRAMMING_LANGUAGES } from "../utils/constants";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import { Modal } from "flowbite-react";
+import { useNavigate } from "react-router";
 
 const Repo = ({ repo }) => {
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
   const formattedDate = formatDate(repo.created_at);
 
   const handleCloneClick = async (repo) => {
@@ -26,14 +30,17 @@ const Repo = ({ repo }) => {
         <FaCodeBranch className="w-5 h-5 text-blue-800" />
       </span>
       <div className="flex gap-2 items-center flex-wrap">
-        <a
-          href={repo.html_url}
-          target="_blank"
-          rel="noreferrer"
-          className="flex items-center gap-2 text-lg font-semibold"
+        <p
+          onClick={() =>
+            navigate(
+              `/explore_user_contributor/${repo.owner.login}/${repo.name}`
+            )
+          }
+          className="flex items-center gap-2
+          text-lg font-semibold cursor-pointer"
         >
           {repo.name}
-        </a>
+        </p>
         <span
           className="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5
 					py-0.5 rounded-full flex items-center gap-1"
@@ -54,36 +61,39 @@ const Repo = ({ repo }) => {
           <FaCopy /> Clone
         </span>
       </div>
-	  <div className="absolute left-[80%]">
+      <div className="absolute left-[80%]">
+        <Modal
+          show={showModal}
+          onClose={() => setShowModal(false)}
+          popup
+          size="md"
+        >
+          <Modal.Header />
+          <Modal.Body>
+            <div className="text-center">
+              <h3 className="mb-5 text-lg text-gray-500 dark:text-gray-400">
+                Details About the Repositories
+              </h3>
+              <div className="flex justify-center gap-4">
+                <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
+                  <p>
+                    Open Issue Count <span aria-hidden="true">→</span>{" "}
+                    {repo.open_issues_count}
+                  </p>
+                  {/* <p>Open Issues <span aria-hidden="true">→</span>{repo.open_issues}</p>w */}
+                </div>
+              </div>
+            </div>
+          </Modal.Body>
+        </Modal>
 
-			<Modal
-					show={showModal}
-					onClose={() => setShowModal(false)}
-					popup
-					size='md'
-				>
-					<Modal.Header />
-					<Modal.Body>
-					<div className='text-center'>
-						{/* <HiOutlineExclamationCircle className='h-14 w-14 text-gray-400 dark:text-gray-200 mb-4 mx-auto' /> */}
-						<h3 className='mb-5 text-lg text-gray-500 dark:text-gray-400'>
-						Details About the Repositories
-						</h3>
-						<div className='flex justify-center gap-4'>
-
-						<div className="grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
-							<p>Open Issue Count <span aria-hidden="true">→</span> {repo.open_issues_count}</p>
-							{/* <p>Open Issues <span aria-hidden="true">→</span>{repo.open_issues}</p>w */}
-						</div>
-						</div>
-					</div>
-					</Modal.Body>
-			</Modal>
-				
-				<div onClick={() => setShowModal(true)} className="cursor-pointer bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2  bg-gradient-to-r from-cyan-900 to-blue-900 hover:scale-95 active:scale-90 transition-all duration-300">
-          			View
-				</div>
-			</div>
+        <div
+          onClick={() => setShowModal(true)}
+          className="cursor-pointer bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2  bg-gradient-to-r from-cyan-900 to-blue-900 hover:scale-95 active:scale-90 transition-all duration-300"
+        >
+          View
+        </div>
+      </div>
 
       <div>
         <time className="block my-1 text-xs font-normal leading-none text-gray-400">
