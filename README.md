@@ -70,7 +70,7 @@ Some Features:
 
    This will start the frontend server and open the application in your default web browser.
 
-### Setup .env file (Create in root folder)
+### Setup .env file (Backend Folder)
 
 ```js
 PORT=5000
